@@ -39,7 +39,7 @@ import static org.mockito.Mockito.verify;
 public class KafkaTestContainersIntegrationTest {
 
     @Container
-    private static final KafkaContainer kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.1.0"))
+    private static final KafkaContainer kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.2.2"))
         .withReuse(true);
 
     @MockBean
