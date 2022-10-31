@@ -20,6 +20,9 @@
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
 		<spring-cloud.version>2021.0.4</spring-cloud.version>
+
+		<!-- https://mvnrepository.com/artifact/io.netty/netty-resolver-dns-native-macos -->
+		<netty-resolver-dns-native-macos.version>4.1.84.Final</netty-resolver-dns-native-macos.version>
 	</properties>
 
 	<dependencies>
@@ -68,6 +71,12 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-resolver-dns-native-macos</artifactId>
+			<version>${netty-resolver-dns-native-macos.version}</version>
+			<classifier>osx-aarch_64</classifier>
 		</dependency>
 
 		<!--
