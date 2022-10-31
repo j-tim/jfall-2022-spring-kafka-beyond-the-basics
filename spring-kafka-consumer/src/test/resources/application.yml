@@ -3,18 +3,23 @@ spring:
     bootstrap-servers: ${spring.embedded.kafka.brokers}
 
     producer:
-      bootstrap-servers: ${spring.embedded.kafka.brokers}
-      properties:
-        schema.registry.url: http://mock:8081
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
 
     consumer:
       group-id: my-consumer-group
       auto-offset-reset: earliest
       properties:
         specific.avro.reader: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
 
     properties:
-      schema.registry.url: http://mock:8081
+      # From: io.confluent.kafka.schemaregistry.testutil.MockSchemaRegistry
+      # pseudo-protocol 'mock://' in serde configurations, so that testing code doesn't have to run an actual
+      # instance of Schema Registry listening on a local port.
+      # For example, schema.registry.url: 'mock://my-scope-name' corresponds to MockSchemaRegistry.getClientForScope("my-scope-name").
+      schema.registry.url: mock://my-scope-name
 
   # We don't want to send spans to Zipkin in tests!
   zipkin:

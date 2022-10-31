@@ -5,7 +5,7 @@ import nl.jtim.spring.kafka.avro.stock.quote.StockQuote;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.listener.MessageListenerContainer;
@@ -27,7 +27,6 @@ import static org.mockito.Mockito.verify;
 @Slf4j
 @EmbeddedKafka
 @SpringBootTest
-@Import(KafkaMockSchemaRegistryTestConfiguration.class)
 public class EmbeddedKafkaAvroExampleIntegrationTest {
 
     @Autowired
@@ -36,14 +35,14 @@ public class EmbeddedKafkaAvroExampleIntegrationTest {
     @Autowired
     private KafkaListenerEndpointRegistry registry;
 
-    @Autowired
+    @MockBean
     private StockQuoteService stockQuoteService;
 
     @Autowired
     private KafkaTemplate<String, StockQuote> kafkaTemplate;
 
     @Test
-    public void consumerAvroTest() {
+    void consumerAvroTest() {
         String kafkaBrokers = embeddedKafkaBroker.getBrokersAsString();
         log.info("Kafka Brokers: {}", kafkaBrokers);
 

@@ -20,6 +20,16 @@ import org.springframework.kafka.test.context.EmbeddedKafka;
 
 import static org.mockito.Mockito.mock;
 
+/**
+ * This is the 'hard way' of configuring the {@link MockSchemaRegistryClient} and might need to be used when using
+ * older versions of the Confluent Schema registry client library.
+ *
+ * For newer versions this is not needed anymore, you can directly configure the MockSchemaRegistryClient to be
+ * used by the Serializer and Deserializer by configuring:
+ * schema.registry.url: mock://my-scope-name
+ *
+ * see: application.yml in the test resources
+ */
 @TestConfiguration
 public class KafkaMockSchemaRegistryTestConfiguration {
 
@@ -39,16 +49,6 @@ public class KafkaMockSchemaRegistryTestConfiguration {
     @Bean
     public SchemaRegistryClient schemaRegistryClient() {
         return new MockSchemaRegistryClient();
-    }
-
-    /**
-     * We also need to mock our 'service' to be able to verify
-     * messages are consumed in the consumer.
-     */
-    @Bean
-    @Primary
-    public StockQuoteService stockQuoteService() {
-        return mock(StockQuoteService.class);
     }
 
     // ============ For consuming ======================================================================================

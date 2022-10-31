@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 import org.springframework.context.annotation.Import;
@@ -33,7 +34,7 @@ import static org.mockito.Mockito.verify;
 @Testcontainers(disabledWithoutDocker = true)
 @DirtiesContext
 @SpringBootTest
-@Import({KafkaTestTopicTestConfiguration.class, KafkaMockSchemaRegistryTestConfiguration.class})
+@Import({KafkaTestTopicTestConfiguration.class})
 @ExtendWith(OutputCaptureExtension.class)
 public class KafkaTestContainersIntegrationTest {
 
@@ -41,7 +42,7 @@ public class KafkaTestContainersIntegrationTest {
     private static final KafkaContainer kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.1.0"))
         .withReuse(true);
 
-    @Autowired
+    @MockBean
     private StockQuoteService stockQuoteService;
 
     @Autowired
