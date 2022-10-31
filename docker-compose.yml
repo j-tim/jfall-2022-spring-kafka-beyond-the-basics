@@ -11,8 +11,6 @@ services:
     image: confluentinc/cp-kafka:${CONFLUENT_PLATFORM_VERSION}
     container_name: kafka
     hostname: kafka
-    # Just in case Zookeeper isn't up yet restart
-    restart: always
     environment:
       # KAFKA_ADVERTISED_LISTENERS: comma-separated list of listeners with their the host/ip and port.
       # This is the metadata that’s passed back to clients.
@@ -72,7 +70,6 @@ services:
     image: confluentinc/cp-schema-registry:${CONFLUENT_PLATFORM_VERSION}
     hostname: schema-registry
     container_name: schema-registry
-    restart: always
     environment:
       # Connects to the docker internal network port: 29092
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "kafka:29092"
@@ -114,7 +111,7 @@ services:
       schema-registry:
         condition: service_healthy
     ports:
-      - "80:80"
+      - "9000:80"
     environment:
       KAFKA_BOOTSTRAP_SERVER: 'kafka:29092'
       SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
