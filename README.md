@@ -33,6 +33,8 @@ Note Confluent Schema Registry is running on port: `8081` using Docker see: [doc
 * Zookeeper (port 2181)
 * [Schema Registry](http://localhost:8081)
 * [Conduktor](http://localhost)
+  * admin, username: admin@conduktor.io password: admin
+  * user, username: user@conduktor.io password: user
 * [Zipkin](http://localhost:9411)
 * [Prometheus](http://localhost:9090)
 * [Grafana](http://localhost:3000/)

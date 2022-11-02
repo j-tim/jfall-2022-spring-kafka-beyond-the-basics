@@ -102,17 +102,28 @@ services:
   # admin: username: admin@conduktor.io password: admin
   # user: username: user@conduktor.io password: user
   conduktor:
-    image: conduktor/conduktor-platform:latest
+    image: conduktor/conduktor-platform:1.2.0
     hostname: conduktor
     container_name: conduktor
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl --fail http://localhost/platform/api/modules/health/live"
+        ]
+      interval: 30s
+      start_period: 120s # Leave time for the psql init scripts to run
+      timeout: 5s
+      retries: 3
     depends_on:
       kafka:
         condition: service_healthy
       schema-registry:
         condition: service_healthy
     ports:
-      - "9000:80"
+      - 80:80
     environment:
       KAFKA_BOOTSTRAP_SERVER: 'kafka:29092'
       SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
       ORGANISATION_NAME: "default"
+      CDK_LISTENING_PORT: 80
