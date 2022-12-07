@@ -5,10 +5,7 @@ import nl.jtim.spring.kafka.avro.stock.quote.StockQuote;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
-
-import javax.validation.Valid;
 
 @Component
 @Slf4j

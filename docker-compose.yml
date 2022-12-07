@@ -102,7 +102,7 @@ services:
   # admin: username: admin@conduktor.io password: admin
   # user: username: user@conduktor.io password: user
   conduktor:
-    image: conduktor/conduktor-platform:1.2.0
+    image: conduktor/conduktor-platform:1.5.1
     hostname: conduktor
     container_name: conduktor
     healthcheck:
