@@ -1,6 +1,7 @@
 # NLJUG JFall 2022 - Spring Kafka beyond the basics
 
-Codebase for [my talk on JFall 2022](https://jfall.nl/speakers-2022/) in Ede, the Netherlands about Spring for Apache Kafka
+Codebase for [my talk on JFall 2022](https://jfall.nl/speakers-2022/) in Ede, the Netherlands about Spring for Apache Kafka.
+[Slides](https://speakerdeck.com/timvanbaarsen/jfall-2022-spring-kafka-beyond-the-basics-lessons-learned-on-our-kafka-journey-at-ing-bank)
 
 ## Project modules and applications
 
